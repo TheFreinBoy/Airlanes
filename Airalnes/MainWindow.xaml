@@ -3,10 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Airalnes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                <GradientStop Color="#a300f5" Offset="1"/>
+                <GradientStop Color="#ea1cfc" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17">
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="350">
+                <Image Source="Images/Plane.png" Width="300" Height="300" Margin="30" VerticalAlignment="Top" Stretch="Fill"/>
+            </StackPanel>
+            <StackPanel Width="350">
+                <StackPanel Margin="20 40">
+                    <TextBlock Text="Login" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Times New Roman"/>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesign:PackIcon  Kind="User" Width="25" Height="25" Foreground="White" />
+                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Enter username" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                              />
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesign:PackIcon  Kind="Password" Width="25" Height="25" Foreground="White" />
+                        <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                              />
+
+                    </StackPanel>   
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
