@@ -24,5 +24,23 @@ namespace Airalnes
         {
             InitializeComponent();
         }
+        private void Border_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                try
+                {
+                    DragMove();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка: " + ex.Message);
+                }
+            }
+        }
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
