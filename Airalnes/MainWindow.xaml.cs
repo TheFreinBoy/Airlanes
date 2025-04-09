@@ -23,7 +23,9 @@ namespace Airalnes
         public MainWindow()
         {
             InitializeComponent();
+            MainContent.Content = new LoginControl();
         }
+
         private void Border_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -38,9 +40,6 @@ namespace Airalnes
                 }
             }
         }
-        private void ButtonExit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+        
     }
 }

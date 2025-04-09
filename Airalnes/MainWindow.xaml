@@ -7,48 +7,11 @@
         xmlns:local="clr-namespace:Airalnes"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    
     <Grid MouseDown="Border_MouseDown">
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
-                <GradientStop Color="#a300f5" Offset="1"/>
-                <GradientStop Color="#ea1cfc" Offset="0"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" Mouse.MouseDown="Border_MouseDown">
-        </Border>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Width="350">
-                <Image Source="Images/Plane.png" Width="300" Height="300" Margin="30" VerticalAlignment="Top" Stretch="Fill"/>
-            </StackPanel>
-            <StackPanel Width="350">
-                <StackPanel Margin="20 40">
-                    <TextBlock Text="Login" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Times New Roman"/>
-                    <StackPanel Orientation="Horizontal" Margin="10">
-                        <materialDesign:PackIcon  Kind="User" Width="25" Height="25" Foreground="White" />
-                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Enter username" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10">
-                        <materialDesign:PackIcon  Kind="Password" Width="25" Height="25" Foreground="White" />
-                        <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
-                        
-                    </StackPanel>
-                    <StackPanel Margin="10" HorizontalAlignment="Center">
-                        <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="15" BorderThickness="2"
-                                BorderBrush="#a300f5" Background="#a300f5" Foreground="white" ToolTip="Login" Content="Login">
-                            
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-                
-            </StackPanel>
-            <StackPanel Width="100">
-                <Button  Margin="10 20" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
-                         x:Name="ButtonExit" Click="ButtonExit_Click" >
-                    <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
-                </Button>
-
-            </StackPanel>
-        </StackPanel>
+        <ContentControl x:Name="MainContent"/>
     </Grid>
+    
 </Window>
+
