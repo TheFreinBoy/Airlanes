@@ -6,10 +6,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Airalnes"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="450" Width="800" Background="{x:Null}">
     <Grid>
-        <materialDesign:Card Margin="10" UniformCornerRadius="15" >
-            <Grid Background="#100E17">
+        <materialDesign:Card UniformCornerRadius="0" >
+            <Grid  Background="#100E17" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="10*"/>
@@ -28,7 +28,7 @@
                         </LinearGradientBrush>
                     </Grid.Background>
                     <ListView Margin="0 15">
-                        <ListViewItem HorizontalAlignment="Center" Margin="0 10">
+                        <ListViewItem HorizontalAlignment="Center" Margin="0 15">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
                                     Foreground="White" Background="{x:Null}">
                                 <StackPanel Margin="-5">

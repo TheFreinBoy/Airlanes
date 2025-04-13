@@ -39,17 +39,22 @@
                     <TextBlock Text="Registration" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Times New Roman"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="Email" Width="25" Height="25" Foreground="White" />
-                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Email" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
+                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Email" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                                 x:Name="EmailTextBox"/>
 
                     </StackPanel>
+                    <TextBlock x:Name="EmailError" Foreground="Red" Margin="45 0 0 0" Visibility="Collapsed" Text=" The email you have provided is already busy."/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="User" Width="25" Height="25" Foreground="White" />
-                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Usarname" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
+                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Usarname" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                                 x:Name="UsernameTextBox"/>
 
                     </StackPanel>
+                    <TextBlock x:Name="UsernameError" Foreground="Red" Margin="45 0 0 0" Visibility="Collapsed" Text="The username you have provided is already busy."/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="Password" Width="25" Height="25" Foreground="White" />
-                        <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
+                        <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                                     x:Name="PasswordBox"/>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
@@ -58,15 +63,26 @@
                         <ComboBox Width="250" Margin="10 0"
                              Background="#100E17" Foreground="White"
                              BorderBrush="White"
-                                  
+                             x:Name="RoleComboBox"     
                              materialDesign:HintAssist.Hint="Choose your role">
                             <ComboBoxItem Content="User" Background="#100E17" />
                             <ComboBoxItem Content="Worker" Background="#100E17" />
                         </ComboBox>
+                        
+                    </StackPanel>
+                    <StackPanel Margin="-4" Visibility="Collapsed" x:Name="GlobalError" Height="15" >
+                        <TextBlock  Text="Fields cannot be blank" 
+                                   Foreground="Red" TextAlignment="Center" Margin="0 0 0 10" />
+                    </StackPanel>
+                    <StackPanel Margin="-4" Visibility="Collapsed" x:Name="RegistrationError" Height="15" >
+                        <TextBlock  Text="Registration error" 
+                                    Foreground="Red" TextAlignment="Center" Margin="0 0 0 10" />
                     </StackPanel>
                     <StackPanel Margin="10" HorizontalAlignment="Center" Width="300" Orientation="Horizontal">
+                        
                         <Button Width="110" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="15" BorderThickness="2"
-                            BorderBrush="#a300f5" Background="#a300f5" Foreground="white" ToolTip="Registration" Content="Registration" Margin="90 0 0 0">
+                                BorderBrush="#a300f5" Background="#a300f5" Foreground="white" ToolTip="Registration" Content="Registration" Margin="90 0 0 0" 
+                                Click="RegisterButton_Click">
                         </Button>
                         <StackPanel Width="100">
                             <Button Margin="0 0 0 0"  Height="40" Width="100" Content="Login" Foreground="white" FontSize="11"

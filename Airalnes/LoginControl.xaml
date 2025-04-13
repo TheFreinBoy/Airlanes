@@ -39,21 +39,32 @@
                     <TextBlock Text="Login" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Times New Roman"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="User" Width="25" Height="25" Foreground="White" />
-                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Enter username" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
+                        <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Enter username" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                                 x:Name="UsernameTextBox"/>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="Password" Width="25" Height="25" Foreground="White" />
-                        <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"/>
+                        <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
+                                     x:Name="PasswordBox"/>
 
+                    </StackPanel>
+                    <StackPanel Margin="-4" Visibility="Collapsed" x:Name="InvalidError" Height="15" >
+                        <TextBlock  Text="Incorrect login or password" 
+                                    Foreground="Red" TextAlignment="Center" Margin="0 0 0 10" />
+                    </StackPanel>
+                    <StackPanel Margin="-4" Visibility="Collapsed" x:Name="BlankError" Height="15" >
+                        <TextBlock  Text="Fields cannot be blank" 
+                                    Foreground="Red" TextAlignment="Center" Margin="0 0 0 10" />
                     </StackPanel>
                     <StackPanel Margin="10" HorizontalAlignment="Center" Width="300" Orientation="Horizontal">
                         <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="15" BorderThickness="2"
-                            BorderBrush="#a300f5" Background="#a300f5" Foreground="white" ToolTip="Login" Content="Login" Margin="100 0 0 0">
+                                BorderBrush="#a300f5" Background="#a300f5" Foreground="white" ToolTip="Login" Content="Login" Margin="100 0 0 0" Name="LoginButton" 
+                                Click="LoginButton_Click">
                         </Button>
                         <StackPanel Width="100">
                             <Button Margin="0 0 0 0"  Height="40" Width="100" Content="Registration" Foreground="white" FontSize="11"
-                                Background="{x:Null}" BorderBrush="{x:Null}"  Template="{StaticResource NoEffectButtonTemplate}" Click="Registration_Click">
+                                    Background="{x:Null}" BorderBrush="{x:Null}"  Template="{StaticResource NoEffectButtonTemplate}" Click="Registration_Click">
 
                             </Button>
                         </StackPanel>

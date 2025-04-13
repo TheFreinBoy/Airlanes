@@ -6,10 +6,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Airalnes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Background="{x:Null}">
     
     <Grid MouseDown="Border_MouseDown">
-
+        
         <ContentControl x:Name="MainContent"/>
     </Grid>
     
