@@ -29,16 +29,38 @@
                     </Grid.Background>
                     <ListView Margin="0 15">
                         <ListViewItem HorizontalAlignment="Center" Margin="0 15">
-                            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                                    Foreground="White" Background="{x:Null}">
-                                <StackPanel Margin="-5">
-                                    <materialDesign:PackIcon Kind="AccountCircle"></materialDesign:PackIcon>
-                                </StackPanel>
-                            </Button>
+                            <Grid>
+                                <Button x:Name="UserButton" Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left"
+                                    BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
+                                    <StackPanel Margin="-5">
+                                        <materialDesign:PackIcon Kind="AccountCircle"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Popup x:Name="UserPopup" Placement="Right" PlacementTarget="{Binding ElementName=UserButton}" 
+                                   StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
+                                    <Border Background="#100E17" CornerRadius="8" Padding="10" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                                        <StackPanel>
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="Profile_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="👤" Margin="0 0 5 0" Foreground="White"/>
+                                                    <TextBlock Text="Profile" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="Logout_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="🚪" Margin="0 0 5 0" Foreground="White"/>
+                                                    <TextBlock Text="Log out" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+                                </Popup>
+                            </Grid>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 0">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                                     Foreground="White" Background="{x:Null}">
+                                 Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="AirplaneMarker"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -46,7 +68,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 10">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                                    Foreground="White" Background="{x:Null}">
+                                Foreground="White" Background="{x:Null}">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -54,7 +76,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                                    Foreground="White" Background="{x:Null}">
+                                Foreground="White" Background="{x:Null}">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Cog"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -65,15 +87,16 @@
                 <Grid Grid.Column="1">
                     <StackPanel Margin="650 0 0 0">
                         <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
-                                x:Name="ButtonExit" Click="ButtonExit_Click" >
+                            x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
                         </Button>
                     </StackPanel>
+                    <Image Source="/Images/Airport.png" Width="500" Height="300" Margin="30" VerticalAlignment="Center" Stretch="Fill"/>
                 </Grid>
                 
-                
+
             </Grid>
         </materialDesign:Card>
-        
+
     </Grid>
 </UserControl>

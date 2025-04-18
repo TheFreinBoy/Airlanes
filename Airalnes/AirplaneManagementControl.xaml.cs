@@ -11,16 +11,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Airalnes
 {
     /// <summary>
-    /// Логика взаимодействия для DashboardControl.xaml
+    /// Логика взаимодействия для AirplaneManagementControl.xaml
     /// </summary>
-    public partial class DashboardControl : UserControl
+    public partial class AirplaneManagementControl : UserControl
     {
-        public DashboardControl()
+        public AirplaneManagementControl()
         {
             InitializeComponent();
         }
@@ -60,7 +61,7 @@ namespace Airalnes
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new AirplaneManagementControl();
+                mainWindow.MainContent.Content = new DashboardControl();
             }
 
         }
