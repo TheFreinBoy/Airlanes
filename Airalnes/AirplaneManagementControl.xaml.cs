@@ -73,5 +73,71 @@ namespace Airalnes
         {
             AirplaneComboBox.ItemsSource = dbHelper.GetAirplanes();
         }
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AirplaneComboBox.SelectedItem is Airplane selectedAirplane)
+            {
+                int airplaneId = selectedAirplane.Id;
+                int airplaneCapacity = selectedAirplane.Capacity;
+                using (var connection = new SQLiteConnection("Data Source=mydatabase2.db"))
+                {
+                    connection.Open();
+                    string query = "SELECT capacity FROM Airplanes WHERE id = @id";
+                    using (var cmd = new SQLiteCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", airplaneId);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                airplaneCapacity = reader.GetInt32(0);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Не вдалося знайти місткість літака.");
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                using (var connection = new SQLiteConnection("Data Source=mydatabase2.db"))
+                {
+                    connection.Open();
+
+                    string query = @"
+                    INSERT INTO Flights (
+                        from_location, to_location, departure, return_date, class, airplane_id, flight_number, capacity, time_DP, time_AR
+                    )
+                    VALUES (
+                        @from, @to, @departure,  @return, @class, @airplane_id, @flight_number, @capacity, @timeDP, @timeAR
+                    );";
+
+                    using (var cmd = new SQLiteCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@from", FromTextBox.Text);
+                        cmd.Parameters.AddWithValue("@to", ToTextBox.Text);
+                        cmd.Parameters.AddWithValue("@departure", DepartureTextBox.Text);
+                        cmd.Parameters.AddWithValue("@return", ArrivalTextBox.Text);
+                        cmd.Parameters.AddWithValue("@class", ClassComboBox.Text);
+                        cmd.Parameters.AddWithValue("@airplane_id", airplaneId);
+                        cmd.Parameters.AddWithValue("@flight_number", FlightNumberTextBox.Text);
+                        cmd.Parameters.AddWithValue("@capacity", airplaneCapacity);
+                        cmd.Parameters.AddWithValue("@timeDP", DepartureTimePicker.Text);
+                        cmd.Parameters.AddWithValue("@timeAR", ArrivalTimePicker.Text);
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            Console.WriteLine("Рейс успішно створено!");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Помилка при створенні рейсу: {ex.Message}");
+                        }
+                    }
+                }
+            }           
+        }
     }
 }
