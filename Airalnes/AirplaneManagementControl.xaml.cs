@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,11 @@ namespace Airalnes
     /// </summary>
     public partial class AirplaneManagementControl : UserControl
     {
+        private DatabaseHelper dbHelper = new DatabaseHelper();
         public AirplaneManagementControl()
         {
             InitializeComponent();
+            LoadAirplanes();
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -64,6 +67,11 @@ namespace Airalnes
                 mainWindow.MainContent.Content = new DashboardControl();
             }
 
+        }
+        
+        private void LoadAirplanes()
+        {
+            AirplaneComboBox.ItemsSource = dbHelper.GetAirplanes();
         }
     }
 }
