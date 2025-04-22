@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace Airalnes
 {
@@ -27,6 +29,7 @@ namespace Airalnes
         {
             InitializeComponent();
             LoadAirplanes();
+            LoadAirports();
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -73,71 +76,63 @@ namespace Airalnes
         {
             AirplaneComboBox.ItemsSource = dbHelper.GetAirplanes();
         }
+        private void LoadAirports()
+        {
+            var airports = dbHelper.GetAirports();
+            FromTextBox.ItemsSource = airports;
+            ToTextBox.ItemsSource = airports;
+        }
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AirplaneComboBox.SelectedItem is Airplane selectedAirplane)
+            string from = FromTextBox.Text.Trim();
+            string to = ToTextBox.Text.Trim();
+            string departure = DepartureTextBox.Text;
+            string arrival = ArrivalTextBox.Text;
+            string clas = ClassComboBox.Text;
+            string airplane = AirplaneComboBox.Text;
+            string flight = FlightNumberTextBox.Text;
+            string timeDP = DepartureTimePicker.Text;
+            string timeAR = ArrivalTimePicker.Text;
+            if (string.IsNullOrEmpty(from) || string.IsNullOrEmpty(to) || string.IsNullOrEmpty(departure) || string.IsNullOrEmpty(arrival) || string.IsNullOrEmpty(clas) ||
+                string.IsNullOrEmpty(airplane) || string.IsNullOrEmpty(flight) || string.IsNullOrEmpty(timeDP) || string.IsNullOrEmpty(timeAR))
             {
-                int airplaneId = selectedAirplane.Id;
-                int airplaneCapacity = selectedAirplane.Capacity;
-                using (var connection = new SQLiteConnection("Data Source=mydatabase2.db"))
+                GlobalError.Visibility = Visibility.Visible;
+                return;
+            }
+            GlobalError.Visibility = Visibility.Collapsed;
+
+            if (FromTextBox.SelectedItem is Airport fromAirport &&
+                ToTextBox.SelectedItem is Airport toAirport &&
+                AirplaneComboBox.SelectedItem is Airplane selectedAirplane)
+            {
+                try
                 {
-                    connection.Open();
-                    string query = "SELECT capacity FROM Airplanes WHERE id = @id";
-                    using (var cmd = new SQLiteCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@id", airplaneId);
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                airplaneCapacity = reader.GetInt32(0);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Не вдалося знайти місткість літака.");
-                                return;
-                            }
-                        }
-                    }
-                }
+                    dbHelper.CreateFlight(
+                        from: fromAirport.IATACode,
+                        to: toAirport.IATACode,
+                        departure: DepartureTextBox.Text,
+                        returnDate: ArrivalTextBox.Text,
+                        flightClass: ClassComboBox.Text,
+                        airplaneId: selectedAirplane.Id,
+                        flightNumber: FlightNumberTextBox.Text,
+                        capacity: selectedAirplane.Capacity,
+                        timeDP: DepartureTimePicker.Text,
+                        timeAR: ArrivalTimePicker.Text
+                    );
 
-                using (var connection = new SQLiteConnection("Data Source=mydatabase2.db"))
+                    Console.WriteLine("Рейс успішно створено!");
+                }
+                catch (Exception ex)
                 {
-                    connection.Open();
-
-                    string query = @"
-                    INSERT INTO Flights (
-                        from_location, to_location, departure, return_date, class, airplane_id, flight_number, capacity, time_DP, time_AR
-                    )
-                    VALUES (
-                        @from, @to, @departure,  @return, @class, @airplane_id, @flight_number, @capacity, @timeDP, @timeAR
-                    );";
-
-                    using (var cmd = new SQLiteCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@from", FromTextBox.Text);
-                        cmd.Parameters.AddWithValue("@to", ToTextBox.Text);
-                        cmd.Parameters.AddWithValue("@departure", DepartureTextBox.Text);
-                        cmd.Parameters.AddWithValue("@return", ArrivalTextBox.Text);
-                        cmd.Parameters.AddWithValue("@class", ClassComboBox.Text);
-                        cmd.Parameters.AddWithValue("@airplane_id", airplaneId);
-                        cmd.Parameters.AddWithValue("@flight_number", FlightNumberTextBox.Text);
-                        cmd.Parameters.AddWithValue("@capacity", airplaneCapacity);
-                        cmd.Parameters.AddWithValue("@timeDP", DepartureTimePicker.Text);
-                        cmd.Parameters.AddWithValue("@timeAR", ArrivalTimePicker.Text);
-
-                        try
-                        {
-                            cmd.ExecuteNonQuery();
-                            Console.WriteLine("Рейс успішно створено!");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Помилка при створенні рейсу: {ex.Message}");
-                        }
-                    }
+                    Console.WriteLine($"Помилка: {ex.Message}");
                 }
-            }           
+            }
+            else
+            {
+               
+            }
         }
     }
-}
+    }
+
+

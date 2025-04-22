@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Airalnes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -105,27 +105,27 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 40 0 0">
 
                             <Border Background="White" CornerRadius="10">
-                                <StackPanel  Width="120" >
+                                <StackPanel  Width="130" >
 
                                     <TextBlock Text="From" Foreground="Black" FontSize="16"  HorizontalAlignment="left" FontFamily="Segoe UI"
                                        Margin="10 5 0 0" />
 
-                                    <TextBox x:Name="FromTextBox" Height="30" Width="100" Margin="10 0 10 0" FontSize="14" 
-                                         materialDesign:TextFieldAssist.UnderlineBrush="Transparent" />
+                                    <ComboBox x:Name="FromTextBox" Height="30" Width="110" Margin="7 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
+                                              SelectedValuePath="Id" MaxDropDownHeight="150"/>
                                     <materialDesign:PackIcon Kind="MapMarker" Margin="95 -24 0 0"></materialDesign:PackIcon>
                                 </StackPanel>
 
                             </Border>
-                            <Border CornerRadius="10" Width="120" Background="White" Margin="5 0 0 0">
+                            <Border CornerRadius="10" Width="130" Background="White" Margin="5 0 0 0">
                                 <StackPanel>
                                     <TextBlock Text="To" Foreground="Black" FontSize="16"  HorizontalAlignment="left" FontFamily="Segoe UI"
                                            Margin="10 5 0 0"/>
-                                    <TextBox x:Name="ToTextBox" Height="30" Width="100" Foreground="Black" FontSize="14" Margin="10 0 10 0"
-                                         materialDesign:TextFieldAssist.UnderlineBrush="Transparent"/>
+                                    <ComboBox x:Name="ToTextBox" Height="30" Width="110" Foreground="Black" FontSize="14" Margin="7 0 10 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                              SelectedValuePath="Id" MaxDropDownHeight="150"/>
                                     <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="95 -24 0 0"></materialDesign:PackIcon>
                                 </StackPanel>
                             </Border>
-                            <Border CornerRadius="10" Margin="5 0 0 0" Width="120" Background="White">
+                            <Border CornerRadius="10" Margin="5 0 0 0" Width="130" Background="White">
                                 <StackPanel  >
                                     <TextBlock Text="Departure" Foreground="Black" FontSize="16" HorizontalAlignment="left" FontFamily="Segoe UI"
                                            Margin="10 5 0 0"/>
@@ -139,7 +139,7 @@
                                     </DatePicker>
                                 </StackPanel>
                             </Border>
-                            <Border CornerRadius="10" Margin="5 0 0 0" Width="120" Background="White">
+                            <Border CornerRadius="10" Margin="5 0 0 0" Width="130" Background="White">
                                 <StackPanel >
                                     <TextBlock Text="Arrival" Foreground="Black" FontSize="16" HorizontalAlignment="Left" FontFamily="Segoe UI"
                                            Margin="10 5 0 0"/>
@@ -173,13 +173,18 @@
                         </StackPanel>
 
                     </Border>
-                    <StackPanel Height="50" Width="100" Margin="500 80 0 0">
+                    <StackPanel Height="50" Width="100" Margin="540 80 0 0">
 
                         <Button Content="Create" Style="{StaticResource MaterialDesignFlatButton}" Background="#000454" Foreground="White" FontFamily="Segoe UI"
                             materialDesign:ButtonAssist.CornerRadius="15" Click="CreateButton_Click">
                         </Button>
+                        
                     </StackPanel>
-                    <Border Background="White" CornerRadius="10" Height="56" Width="120" HorizontalAlignment="Left" Margin="53 60 0 0">
+                    <TextBlock Foreground="Red" Text="Fields cannot be blank" Margin="540 130 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"
+                               x:Name="GlobalError" Visibility="Collapsed">
+
+                    </TextBlock>
+                    <Border Background="White" CornerRadius="10" Height="56" Width="130" HorizontalAlignment="Left" Margin="34 60 0 0">
                         <StackPanel  Width="120" >
 
                             <TextBlock Text="Airplane" Foreground="Black" FontSize="16"  HorizontalAlignment="left" FontFamily="Segoe UI"
@@ -191,19 +196,19 @@
                         </StackPanel>
 
                     </Border>
-                    <Border Background="White" CornerRadius="10" Height="56" Width="120" HorizontalAlignment="Left" Margin="179 60 0 0">
-                        <StackPanel  Width="120" >
+                    <Border Background="White" CornerRadius="10" Height="56" Width="130" HorizontalAlignment="Left" Margin="169 60 0 0">
+                        <StackPanel  Width="130" >
                             <TextBlock Text="Flight №" Foreground="Black" FontSize="16"  HorizontalAlignment="left" FontFamily="Segoe UI" Margin="10 5 0 0" />
                             <TextBox  Height="30" Width="100" Margin="10 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
                                       x:Name="FlightNumberTextBox"/>
                             <materialDesign:PackIcon Kind="Counter" Margin="95 -24 0 0"></materialDesign:PackIcon>
                         </StackPanel>
                     </Border>
-                    <Border Background="White" CornerRadius="10" Height="56" Width="120" HorizontalAlignment="Left" Margin="305 60 0 0">
-                        <StackPanel  Width="120" >
+                    <Border Background="White" CornerRadius="10" Height="56" Width="130" HorizontalAlignment="Left" Margin="305 60 0 0">
+                        <StackPanel  Width="130" >
                             <TextBlock Text="Time DP" Foreground="Black" FontSize="16"  HorizontalAlignment="left" FontFamily="Segoe UI" Margin="10 5 0 0" />
                             <materialDesign:TimePicker  Height="30" Width="100" Margin="10 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                                                        x:Name="DepartureTimePicker">
+                                                        x:Name="DepartureTimePicker" Focusable="False"  >
                                 <materialDesign:TimePicker.ClockStyle>
                                     <Style TargetType="materialDesign:Clock" >
                                         <Setter Property="Background" Value="white"/>
@@ -212,17 +217,11 @@
                             </materialDesign:TimePicker>
                         </StackPanel>
                     </Border>
-                    <Border Background="White" CornerRadius="10" Height="56" Width="120" HorizontalAlignment="Left" Margin="430 60 0 0">
-                        <StackPanel  Width="120" >
+                    <Border Background="White" CornerRadius="10" Height="56" Width="130" HorizontalAlignment="Left" Margin="440 60 0 0">
+                        <StackPanel  Width="130" >
                             <TextBlock Text="Time AR" Foreground="Black" FontSize="16"  HorizontalAlignment="left" FontFamily="Segoe UI" Margin="10 5 0 0" />
                             <materialDesign:TimePicker  Height="30" Width="100" Margin="10 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
-                                                        x:Name="ArrivalTimePicker" >
-                                <materialDesign:TimePicker.ClockStyle>
-                                    <Style TargetType="materialDesign:Clock" >
-                                        <Setter Property="Background" Value="white"/>
-                                    </Style>
-                                </materialDesign:TimePicker.ClockStyle>
-                            </materialDesign:TimePicker>
+                                                        x:Name="ArrivalTimePicker" Focusable="False" />
                         </StackPanel>
                     </Border>
                 </Grid>

@@ -20,6 +20,8 @@ namespace Airalnes
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string CurrentUserRights { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace Airalnes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка: " + ex.Message);
+                    Console.WriteLine("Помилка: " + ex.Message);
                 }
             }
         }

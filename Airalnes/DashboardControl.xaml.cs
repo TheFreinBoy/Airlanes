@@ -60,9 +60,17 @@ namespace Airalnes
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new AirplaneManagementControl();
-            }
+                string userRights = mainWindow.CurrentUserRights;
 
+                if (userRights == "Worker")
+                {
+                    mainWindow.MainContent.Content = new AirplaneManagementControl();
+                }
+                else if (userRights == "User")
+                {
+                    MessageBox.Show("заглушка");
+                }
+            }
         }
     }
 }

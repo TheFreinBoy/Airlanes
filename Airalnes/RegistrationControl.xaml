@@ -67,6 +67,7 @@
                              materialDesign:HintAssist.Hint="Choose your role">
                             <ComboBoxItem Content="User" Background="#100E17" />
                             <ComboBoxItem Content="Worker" Background="#100E17" />
+                            
                         </ComboBox>
                         
                     </StackPanel>

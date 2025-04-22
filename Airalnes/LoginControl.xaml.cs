@@ -62,11 +62,11 @@ namespace Airalnes
                         {
                             if (reader.Read())
                             {
-                                string role = reader["rights"].ToString();
-
-                                BlankError.Visibility = Visibility.Collapsed;
-
                                 var mainWindow = Application.Current.MainWindow as MainWindow;
+                                string role = reader["rights"].ToString();
+                                mainWindow.CurrentUserRights = role;
+                                BlankError.Visibility = Visibility.Collapsed;
+                                
                                 mainWindow.MainContent.Content = new DashboardControl();
                             }
                             else

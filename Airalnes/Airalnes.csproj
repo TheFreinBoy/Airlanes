@@ -159,6 +159,7 @@
     <Compile Include="AirplaneManagementControl.xaml.cs">
       <DependentUpon>AirplaneManagementControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Airport.cs" />
     <Compile Include="DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>

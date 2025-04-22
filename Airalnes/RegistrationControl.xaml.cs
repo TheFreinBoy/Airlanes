@@ -57,9 +57,7 @@ namespace Airalnes
             }
 
             using (SQLiteConnection conn = _dbHelper.GetConnection())
-            {
-                try
-                {
+            {                
                     conn.Open();
                     string query = $"SELECT COUNT(*) FROM users WHERE {column} = @Value";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
@@ -77,12 +75,7 @@ namespace Airalnes
                             errorBlock.Visibility = Visibility.Collapsed;
                             inputControl.BorderBrush = Brushes.White;
                         }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Database Error: " + ex.Message);
-                }
+                    }                           
             }
         }
 
@@ -93,8 +86,7 @@ namespace Airalnes
             string password = PasswordBox.Password;
             string role = RoleComboBox.Text;
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||  string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
             {
                 GlobalError.Visibility = Visibility.Visible;
                 return;
@@ -154,7 +146,7 @@ namespace Airalnes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Database Error: " + ex.Message);
+                    Console.WriteLine("Database Error: " + ex.Message);
                 }
             }
         }

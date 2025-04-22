@@ -74,6 +74,16 @@ namespace Airalnes
                 );";
                 ExecuteQuery(createFlightsTable, connection);
 
+                string createAirportsTable = @"
+                CREATE TABLE IF NOT EXISTS Airports (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    city TEXT NOT NULL,
+                    country TEXT NOT NULL,
+                    iata_code TEXT NOT NULL UNIQUE
+                );";
+                ExecuteQuery(createAirportsTable, connection);
+
                 string checkIfAirplanesExist = "SELECT COUNT(*) FROM Airplanes;";
                 using (var command = new SQLiteCommand(checkIfAirplanesExist, connection))
                 {
@@ -88,7 +98,30 @@ namespace Airalnes
                             ('Airbus A350', 314);";
                         ExecuteQuery(insertAirplanes, connection);
 
-                        Console.WriteLine("✅ Додано 4 літаки до таблиці Airplanes.");
+                        Console.WriteLine("Додано 4 літаки до таблиці Airplanes.");
+                    }
+                }
+                string checkIfAirportsExist = "SELECT COUNT(*) FROM Airports;";
+                using (var command = new SQLiteCommand(checkIfAirportsExist, connection))
+                {
+                    long count = (long)command.ExecuteScalar();
+                    if (count == 0)
+                    {
+                        string insertAirports = @"
+                        INSERT INTO Airports (name, city, country, iata_code) VALUES
+                            ('Boryspil International Airport', 'Kyiv', 'Ukraine', 'KBP'),
+                            ('Lviv Danylo Halytskyi International Airport', 'Lviv', 'Ukraine', 'LWO'),
+                            ('Odesa International Airport', 'Odesa', 'Ukraine', 'ODS'),
+                            ('Kharkiv International Airport', 'Kharkiv', 'Ukraine', 'HRK'),
+                            ('Heathrow Airport', 'London', 'United Kingdom', 'LHR'),
+                            ('Charles de Gaulle Airport', 'Paris', 'France', 'CDG'),
+                            ('John F. Kennedy International Airport', 'New York', 'USA', 'JFK'),
+                            ('Dubai International Airport', 'Dubai', 'UAE', 'DXB'),
+                            ('Frankfurt am Main Airport', 'Frankfurt', 'Germany', 'FRA'),
+                            ('Tokyo Haneda Airport', 'Tokyo', 'Japan', 'HND');
+                        ";
+                        ExecuteQuery(insertAirports, connection);
+                        Console.WriteLine("Додано 10 аеропортів до таблиці Airports.");
                     }
                 }
             }
@@ -105,6 +138,7 @@ namespace Airalnes
                 command.ExecuteNonQuery();
             }
         }
+        
 
         public List<Airplane> GetAirplanes()
         {
@@ -131,6 +165,66 @@ namespace Airalnes
             }
 
             return airplanes;
+        }
+        public List<Airport> GetAirports()
+        {
+            var airports = new List<Airport>();
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+                string query = "SELECT id, name, city, country, iata_code FROM Airports;";
+                using (var command = new SQLiteCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        airports.Add(new Airport
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            City = reader.GetString(2),
+                            Country = reader.GetString(3),
+                            IATACode = reader.GetString(4)
+                        });
+                    }
+                    Console.WriteLine("Da");
+                }
+            }
+            return airports;
+        }
+        public void CreateFlight(string from, string to, string departure, string returnDate, string flightClass, int airplaneId, string flightNumber,
+                                 int capacity, string timeDP, string timeAR)
+        {
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                INSERT INTO Flights (
+                    from_location, to_location, departure, return_date, class,
+                    airplane_id, flight_number, capacity, time_DP, time_AR
+                )
+                VALUES (
+                    @from, @to, @departure, @return, @class,
+                    @airplane_id, @flight_number, @capacity, @timeDP, @timeAR
+                );";
+
+                using (var cmd = new SQLiteCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@from", from);
+                    cmd.Parameters.AddWithValue("@to", to);
+                    cmd.Parameters.AddWithValue("@departure", departure);
+                    cmd.Parameters.AddWithValue("@return", returnDate);
+                    cmd.Parameters.AddWithValue("@class", flightClass);
+                    cmd.Parameters.AddWithValue("@airplane_id", airplaneId);
+                    cmd.Parameters.AddWithValue("@flight_number", flightNumber);
+                    cmd.Parameters.AddWithValue("@capacity", capacity);
+                    cmd.Parameters.AddWithValue("@timeDP", timeDP);
+                    cmd.Parameters.AddWithValue("@timeAR", timeAR);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public SQLiteConnection GetConnection()
