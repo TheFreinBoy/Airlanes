@@ -159,6 +159,9 @@
     <Compile Include="AirplaneManagementControl.xaml.cs">
       <DependentUpon>AirplaneManagementControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AirplaneUsersControl.xaml.cs">
+      <DependentUpon>AirplaneUsersControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Airport.cs" />
     <Compile Include="DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
@@ -171,6 +174,10 @@
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Page Include="AirplaneManagementControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AirplaneUsersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

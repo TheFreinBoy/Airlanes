@@ -113,7 +113,7 @@ namespace Airalnes
                             ('Lviv Danylo Halytskyi International Airport', 'Lviv', 'Ukraine', 'LWO'),
                             ('Odesa International Airport', 'Odesa', 'Ukraine', 'ODS'),
                             ('Kharkiv International Airport', 'Kharkiv', 'Ukraine', 'HRK'),
-                            ('Heathrow Airport', 'London', 'United Kingdom', 'LHR'),
+                            ('Heathrow Airport', 'London', 'UK', 'LHR'),
                             ('Charles de Gaulle Airport', 'Paris', 'France', 'CDG'),
                             ('John F. Kennedy International Airport', 'New York', 'USA', 'JFK'),
                             ('Dubai International Airport', 'Dubai', 'UAE', 'DXB'),
