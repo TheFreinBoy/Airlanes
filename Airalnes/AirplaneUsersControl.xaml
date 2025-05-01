@@ -31,14 +31,14 @@
                         <ListViewItem HorizontalAlignment="Center" Margin="0 15">
                             <Grid>
                                 <Button x:Name="UserButton" Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left"
-                            BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
+                    BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
                                     <StackPanel Margin="-5">
                                         <materialDesign:PackIcon Kind="AccountCircle"/>
                                     </StackPanel>
                                 </Button>
 
                                 <Popup x:Name="UserPopup" Placement="Right" PlacementTarget="{Binding ElementName=UserButton}" 
-                           StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
+                   StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
                                     <Border Background="#100E17" CornerRadius="8" Padding="10" Effect="{DynamicResource MaterialDesignShadowDepth2}">
                                         <StackPanel>
                                             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="Profile_Click">
@@ -60,7 +60,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 0">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                         Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click" >
+                 Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click" >
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="AirplaneMarker"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -68,7 +68,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 10">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                        Foreground="White" Background="{x:Null}">
+                Foreground="White" Background="{x:Null}">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -76,7 +76,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                        Foreground="White" Background="{x:Null}">
+                Foreground="White" Background="{x:Null}">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Cog"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -87,11 +87,11 @@
                 <Grid Grid.Column="1">
                     <StackPanel Margin="650 0 0 0">
                         <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
-                    x:Name="ButtonExit" Click="ButtonExit_Click" >
+            x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
                         </Button>
                     </StackPanel>
-                    <Grid Margin="20 50 20 340">
+                    <Grid Margin="20 50 20 290">
                         <Grid.Resources>
                             <Style TargetType="materialDesign:PackIcon">
                                 <Setter Property="Width" Value="20"/>
@@ -103,32 +103,32 @@
                                 <Setter Property="FontSize" Value="16"/>
                             </Style>
                         </Grid.Resources>
-                        <Border CornerRadius="25" Height="60" Background="White">
+                        <Border CornerRadius="25" Height="110" Background="White">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Margin="10 0 0 0 "  Width="140">
                                     <TextBlock Text="From" HorizontalAlignment="left" Margin="10 5 0 0" />
                                     <ComboBox x:Name="FromTextBox" Height="30" Width="125" Margin="7 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
-                                          SelectedValuePath="Id" MaxDropDownHeight="150"/>
-                                    <materialDesign:PackIcon Kind="MapMarker" Margin="100 -24 0 0" ></materialDesign:PackIcon>
+                                  SelectedValuePath="Id" MaxDropDownHeight="150"/>
+                                    <materialDesign:PackIcon Kind="MapMarker" Margin="106 -24 0 0" ></materialDesign:PackIcon>
                                 </StackPanel>
                                 <StackPanel Margin="5 0 0 0 " Width="140">
                                     <TextBlock Text="To" HorizontalAlignment="left" Margin="10 5 0 0"/>
                                     <ComboBox x:Name="ToTextBox" Height="30" Width="125" Foreground="Black" FontSize="14" Margin="7 0 10 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                                          SelectedValuePath="Id" MaxDropDownHeight="150"/>
-                                    <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="100 -24 0 0"></materialDesign:PackIcon>
+                                              SelectedValuePath="Id" MaxDropDownHeight="150"/>
+                                    <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="106 -24 0 0"></materialDesign:PackIcon>
 
                                 </StackPanel>
                                 <StackPanel Margin="5 0 0 0 "  Width="120">
                                     <TextBlock Text="Departure" HorizontalAlignment="left" Margin="10 5 0 0"/>
                                     <DatePicker x:Name="DepartureTextBox" Height="30" Width="100" FontSize="14" Margin="10 0 10 0"
-                                            materialDesign:TextFieldAssist.UnderlineBrush="Transparent" Focusable="False">
+                                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent" Focusable="False">
                                     </DatePicker>
 
                                 </StackPanel>
                                 <StackPanel Margin="5 0 0 0 "  Width="120">
                                     <TextBlock Text="Arrival" HorizontalAlignment="Left" Margin="10 5 0 0"/>
                                     <DatePicker x:Name="ArrivalTextBox" Height="30" Width="100" FontSize="14" Margin="10 0 10 0"
-                                            materialDesign:TextFieldAssist.UnderlineBrush="Transparent" HorizontalAlignment="Center" Focusable="False" >
+                                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent" HorizontalAlignment="Center" Focusable="False" >
                                         <DatePicker.CalendarStyle>
                                             <Style TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
                                                 <Setter Property="Background" Value="white"/>
@@ -140,7 +140,7 @@
                                 <StackPanel Margin="5 0 0 0">
                                     <TextBlock Text="Class" HorizontalAlignment="Left" Margin="10 5 0 0" />
                                     <ComboBox Width="110"  Height="30" Foreground="Black"  x:Name="ClassComboBox" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                                          FontFamily="Segoe UI" FontSize="14" Text="Клас" Margin="5 0 0 0">
+                                  FontFamily="Segoe UI" FontSize="14" Text="Клас" Margin="5 0 0 0">
 
                                         <ComboBoxItem Content="Econom" Background="White"  FontFamily="Segoe UI"/>
                                         <ComboBoxItem Content="Buisness" Background="White" FontFamily="Segoe UI"/>
@@ -148,23 +148,36 @@
                                     </ComboBox>
                                     <materialDesign:PackIcon Kind="SeatPassenger" Margin="97 -24 0 0"></materialDesign:PackIcon>
                                 </StackPanel>
+                                <StackPanel Margin="-1175 50 0 0 "  Width="140">
+                                    <TextBlock Text="Passengers" HorizontalAlignment="left" Margin="10 5 0 0" />
+                                    <ComboBox x:Name="Passengers" Height="30" Width="125" Margin="7 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
+                                          MaxDropDownHeight="150">
+                                        <ComboBoxItem Content="1" Background="White"  FontFamily="Segoe UI"/>
+                                        <ComboBoxItem Content="2" Background="White" FontFamily="Segoe UI"/>
+                                        <ComboBoxItem Content="3" Background="White" FontFamily="Segoe UI"/>
+                                        <ComboBoxItem Content="4" Background="White" FontFamily="Segoe UI"/>
+                                    </ComboBox>
+
+                                    <materialDesign:PackIcon Kind="HumanHandsdown" Margin="106 -24 0 0" ></materialDesign:PackIcon>
+                                </StackPanel>
+                                <StackPanel Height="40"  Width="90" Margin="-900 65 0 0">
+                                    <Button Background="#ff1f75" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White"
+                                        Content="Search" FontFamily="Segoe UI">
+                                    </Button>
+                                </StackPanel>
 
                             </StackPanel>
                         </Border>
                     </Grid>
-                    <StackPanel Margin="10 110 10 10">
-                        <Border Margin="10" Padding="10" CornerRadius="25" Height="310" >
+                    <StackPanel Margin="10 160 10 10">
+                        <Border Margin="10" Padding="10" CornerRadius="25" Height="260" >
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.1,0.1" EndPoint="0.9,1">
                                     <GradientStop Color="#007bff" Offset="0"/>
                                     <GradientStop Color="#70b5ff" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <StackPanel Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90">
-                                <Button Background="#ff1f75" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White"
-                                        Content="Search" FontFamily="Segoe UI">
-                                </Button>
-                            </StackPanel>
+
                         </Border>
                     </StackPanel>
                 </Grid>
