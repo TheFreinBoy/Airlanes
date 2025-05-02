@@ -83,18 +83,19 @@ namespace Airalnes
             ToTextBox.ItemsSource = airports;
         }
         private void CreateButton_Click(object sender, RoutedEventArgs e)
-        {
-            string from = FromTextBox.Text.Trim();
-            string to = ToTextBox.Text.Trim();
-            string departure = DepartureTextBox.Text;
-            string arrival = ArrivalTextBox.Text;
-            string clas = ClassComboBox.Text;
-            string airplane = AirplaneComboBox.Text;
-            string flight = FlightNumberTextBox.Text;
-            string timeDP = DepartureTimePicker.Text;
-            string timeAR = ArrivalTimePicker.Text;
-            if (string.IsNullOrEmpty(from) || string.IsNullOrEmpty(to) || string.IsNullOrEmpty(departure) || string.IsNullOrEmpty(arrival) || string.IsNullOrEmpty(clas) ||
-                string.IsNullOrEmpty(airplane) || string.IsNullOrEmpty(flight) || string.IsNullOrEmpty(timeDP) || string.IsNullOrEmpty(timeAR))
+        {           
+            FromTextBox.BorderBrush = string.IsNullOrEmpty(FromTextBox.Text) ? Brushes.Red : Brushes.Black;
+            ToTextBox.BorderBrush = string.IsNullOrEmpty(ToTextBox.Text) ? Brushes.Red : Brushes.Black;           
+            DepartureTextBox.BorderBrush = string.IsNullOrEmpty(DepartureTextBox.Text) ? Brushes.Red : Brushes.Black;
+            ArrivalTextBox.BorderBrush = string.IsNullOrEmpty(ArrivalTextBox.Text) ? Brushes.Red : Brushes.Black;
+            ClassComboBox.BorderBrush = string.IsNullOrEmpty(ClassComboBox.Text) ? Brushes.Red : Brushes.Black;
+            AirplaneComboBox.BorderBrush = string.IsNullOrEmpty(AirplaneComboBox.Text) ? Brushes.Red : Brushes.Black;
+            FlightNumberTextBox.BorderBrush = string.IsNullOrEmpty(FlightNumberTextBox.Text) ? Brushes.Red : Brushes.Black;
+            DepartureTimePicker.BorderBrush = string.IsNullOrEmpty(DepartureTimePicker.Text) ? Brushes.Red : Brushes.Black;
+            ArrivalTimePicker.BorderBrush = string.IsNullOrEmpty(ArrivalTimePicker.Text) ? Brushes.Red : Brushes.Black;
+            if (string.IsNullOrEmpty(FromTextBox.Text) || string.IsNullOrEmpty(ToTextBox.Text) || string.IsNullOrEmpty(DepartureTextBox.Text) || string.IsNullOrEmpty(ArrivalTextBox.Text) 
+                || string.IsNullOrEmpty(ClassComboBox.Text) || string.IsNullOrEmpty(AirplaneComboBox.Text) || string.IsNullOrEmpty(FlightNumberTextBox.Text) || string.IsNullOrEmpty(DepartureTimePicker.Text) 
+                || string.IsNullOrEmpty(ArrivalTimePicker.Text))
             {
                 GlobalError.Visibility = Visibility.Visible;
                 return;

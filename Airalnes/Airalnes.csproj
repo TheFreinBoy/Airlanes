@@ -167,6 +167,7 @@
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="Flight.cs" />
     <Compile Include="RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
     </Compile>

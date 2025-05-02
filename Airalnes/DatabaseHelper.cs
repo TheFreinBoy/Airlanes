@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 using Airalnes;
+using System.Windows.Media.Media3D;
 
 namespace Airalnes
 {
@@ -226,6 +227,92 @@ namespace Airalnes
                 }
             }
         }
+        public List<Flight> SearchFlights(string from, string to, string departure, string arrival, string clas, int passengers)
+        {
+            var flights = new List<Flight>();
+
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                SELECT 
+                    f.id, f.from_location, f.to_location, f.departure, f.return_date,
+                    f.class, a.name AS airplane_name, f.flight_number,
+                    f.capacity, f.time_DP, f.time_AR
+                FROM Flights f
+                JOIN Airplanes a ON f.airplane_id = a.id
+                WHERE (@from = '' OR f.from_location LIKE @from)
+                  AND (@to = '' OR f.to_location LIKE @to)
+                  AND (@departure = '' OR f.departure = @departure)
+                  AND (@return_date = '' OR f.return_date = @return_date)
+                  AND (@class = '' OR f.class = @class)
+                  AND f.capacity >= @passengers;";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@from", string.IsNullOrEmpty(from) ? "" : $"%{ExtractAirportCode(from)}%");
+                    command.Parameters.AddWithValue("@to", string.IsNullOrEmpty(to) ? "" : $"%{ExtractAirportCode(to)}%");
+                    command.Parameters.AddWithValue("@departure", string.IsNullOrEmpty(departure) ? "" : ConvertFromIsoDate(departure));
+                    command.Parameters.AddWithValue("@return_date", string.IsNullOrEmpty(arrival) ? "" : ConvertFromIsoDate(arrival));
+                    command.Parameters.AddWithValue("@class", clas);
+                    command.Parameters.AddWithValue("@passengers", passengers);
+
+                    Console.WriteLine("SQL query: " + query);
+                    foreach (SQLiteParameter param in command.Parameters)
+                    {
+                        Console.WriteLine($"Parameter: {param.ParameterName}, Value: {param.Value}");
+                    }
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            flights.Add(new Flight
+                            {
+                                Id = reader.GetInt32(0),
+                                FromLocation = reader.GetString(1),
+                                ToLocation = reader.GetString(2),
+                                Departure = reader.GetString(3),
+                                ReturnDate = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                Class = reader.GetString(5),
+                                AirplaneName = reader.GetString(6),
+                                FlightNumber = reader.GetString(7),
+                                Capacity = reader.GetInt32(8),
+                                TimeDP = reader.GetString(9),
+                                TimeAR = reader.GetString(10)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return flights;
+        }
+        private string ExtractAirportCode(string input)
+        {
+            if (input.Contains("(") && input.Contains(")"))
+            {
+                int start = input.IndexOf('(') + 1;
+                int end = input.IndexOf(')');
+                return input.Substring(start, end - start);
+            }
+            return input;
+        }
+
+        private string ConvertFromIsoDate(string isoDateStr)
+        {
+
+            if (DateTime.TryParse(isoDateStr, out DateTime date))
+            {
+                return date.ToString("dd.MM.yyyy");
+            }
+            return isoDateStr;
+        }
+
+
+
 
         public SQLiteConnection GetConnection()
         {

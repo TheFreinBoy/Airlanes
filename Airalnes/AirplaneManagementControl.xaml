@@ -153,7 +153,7 @@
                                     <TextBlock Text="Class" HorizontalAlignment="Left" Margin="10 5 0 0" />
                                     <ComboBox Width="110"  Height="30" Foreground="Black"  x:Name="ClassComboBox"     
                                            materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                                          FontFamily="Segoe UI" FontSize="14" Text="Клас" Margin="5 0 0 0">
+                                          FontFamily="Segoe UI" FontSize="14"  Margin="5 0 0 0">
 
                                         <ComboBoxItem Content="Econom" Background="White"  FontFamily="Segoe UI"/>
                                         <ComboBoxItem Content="Buisness" Background="White" FontFamily="Segoe UI"/>
