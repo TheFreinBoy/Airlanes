@@ -82,6 +82,23 @@ namespace Airalnes
             FromTextBox.ItemsSource = airports;
             ToTextBox.ItemsSource = airports;
         }
+        private void HistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                string userRights = mainWindow.CurrentUserRights;
+
+                if (userRights == "Worker")
+                {
+                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
+                }
+                else if (userRights == "User")
+                {
+                    mainWindow.MainContent.Content = new AirplaneUsersControl();
+                }
+            }
+        }
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {           
             FromTextBox.BorderBrush = string.IsNullOrEmpty(FromTextBox.Text) ? Brushes.Red : Brushes.Black;

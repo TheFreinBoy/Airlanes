@@ -70,7 +70,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 10">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                                Foreground="White" Background="{x:Null}">
+                                Foreground="White" Background="{x:Null}" x:Name="History" Click="HistoryButton_Click">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -95,6 +95,9 @@
                             <Setter Property="FontSize" Value="16"/>
                         </Style>
                     </Grid.Resources>
+                    <TextBlock Text="Worker" FontSize="38"   Margin="0 0 0 340" Foreground="White" FontFamily="pack://application:,,,/Fonts/#Lady Marmalade"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    </TextBlock>
                     <StackPanel Margin="650 0 0 0">
                         <Button Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
             x:Name="ButtonExit" Click="ButtonExit_Click">

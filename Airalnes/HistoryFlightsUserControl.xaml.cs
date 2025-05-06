@@ -11,18 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Airalnes
 {
     /// <summary>
-    /// Логика взаимодействия для DashboardControl.xaml
+    /// Логика взаимодействия для HistoryFlightsUserControl.xaml
     /// </summary>
-    public partial class DashboardControl : UserControl
+    public partial class HistoryFlightsUserControl : UserControl
     {
-        public DashboardControl()
+        private DatabaseHelper dbHelper = new DatabaseHelper();
+
+        public HistoryFlightsUserControl()
         {
             InitializeComponent();
+            LoadAllFlights();
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -77,17 +81,14 @@ namespace Airalnes
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                string userRights = mainWindow.CurrentUserRights;
-
-                if (userRights == "Worker")
-                {
-                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
-                }
-                else if (userRights == "User")
-                {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl();
-                }
+                mainWindow.MainContent.Content = new DashboardControl();
             }
+        }
+
+        private void LoadAllFlights()
+        {
+            var allFlights = dbHelper.SearchFlights("", "", "", "", "", 0);
+            FlightsDataGrid.ItemsSource = allFlights;
         }
     }
 }

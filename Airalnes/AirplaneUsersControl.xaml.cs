@@ -49,7 +49,6 @@ namespace Airalnes
                 new CustomPopupPlacement(new Point(targetSize.Width + 10, -10), PopupPrimaryAxis.Horizontal)
             };
         }
-
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
@@ -90,23 +89,21 @@ namespace Airalnes
             
             FieldsError.Visibility = Visibility.Collapsed;
 
-            string from = FromTextBox.Text;
+                string from = FromTextBox.Text;
                 string to = ToTextBox.Text;
                 string departure = DepartureTextBox.SelectedDate?.ToString("yyyy-MM-dd") ?? "";
                 string arrival = ArrivalTextBox.SelectedDate?.ToString("yyyy-MM-dd") ?? "";
                 string flightClass = (ClassComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
 
-
                 int passengers = 1;
 
-                if (PassengersComboBox.SelectedItem != null && int.TryParse(PassengersComboBox.SelectedItem.ToString(), out int parsed))
-                {
-                    passengers = parsed;
-                }
+            if (PassengersComboBox.SelectedItem is ComboBoxItem selectedItem && int.TryParse(selectedItem.Content.ToString(), out int parsed))
+            {
+                passengers = parsed;
+            }
 
-                var results = dbHelper.SearchFlights(from, to, departure, arrival, flightClass, passengers);
+            var results = dbHelper.SearchFlights(from, to, departure, arrival, flightClass, passengers);
                 FlightsDataGrid.ItemsSource = results;
-            
             
         }
         private void BookFlight_Click(object sender, RoutedEventArgs e)

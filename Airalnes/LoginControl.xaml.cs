@@ -36,12 +36,11 @@ namespace Airalnes
         {
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password;
-
+            UsernameTextBox.BorderBrush = string.IsNullOrEmpty(UsernameTextBox.Text) ? Brushes.Red : Brushes.White;
+            PasswordBox.BorderBrush = string.IsNullOrEmpty(PasswordBox.Password) ? Brushes.Red : Brushes.White;
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                BlankError.Visibility = Visibility.Visible;
-                UsernameTextBox.BorderBrush = Brushes.Red;
-                PasswordBox.BorderBrush = Brushes.Red;
+                BlankError.Visibility = Visibility.Visible;               
                 return;
             }
 

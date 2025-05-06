@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SQLite;
+using System.Text.RegularExpressions;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace Airalnes
 {
@@ -85,6 +87,11 @@ namespace Airalnes
             string email = EmailTextBox.Text.Trim();
             string password = PasswordBox.Password;
             string role = RoleComboBox.Text;
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            EmailTextBox.BorderBrush = string.IsNullOrEmpty(EmailTextBox.Text) ? Brushes.Red : Brushes.White;
+            UsernameTextBox.BorderBrush = string.IsNullOrEmpty(UsernameTextBox.Text) ? Brushes.Red : Brushes.White;
+            PasswordBox.BorderBrush = string.IsNullOrEmpty(PasswordBox.Password) ? Brushes.Red : Brushes.White;
+            RoleComboBox.BorderBrush = string.IsNullOrEmpty(RoleComboBox.Text) ? Brushes.Red : Brushes.White;
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||  string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
             {
@@ -93,6 +100,14 @@ namespace Airalnes
             }
 
             GlobalError.Visibility = Visibility.Collapsed;
+
+            if (!Regex.IsMatch(email, emailPattern))
+            {
+                EmailError.Text = "Please enter a valid email address.";
+                EmailError.Visibility = Visibility.Visible;
+                return;
+            }
+            EmailError.Visibility = Visibility.Collapsed;
 
             using (SQLiteConnection conn = _dbHelper.GetConnection())
             {

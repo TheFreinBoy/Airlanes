@@ -36,7 +36,7 @@
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel Margin="20 40">
-                    <TextBlock Text="Registration" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Times New Roman"/>
+                    <TextBlock Text="Registration" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="pack://application:,,,/Fonts/#Lady Marmalade"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="Email" Width="25" Height="25" Foreground="White" />
                         <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Email" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
