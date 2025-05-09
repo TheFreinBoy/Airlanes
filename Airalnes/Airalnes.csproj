@@ -7,7 +7,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A46E871D-EA98-4463-91B0-7D8ADDE8BF3C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Airalnes</RootNamespace>
     <AssemblyName>Airalnes</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
@@ -155,45 +155,50 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Airplane.cs" />
-    <Compile Include="AirplaneManagementControl.xaml.cs">
+    <Compile Include="Models\Airplane.cs" />
+    <Compile Include="Views\Controls\AirplaneManagementControl.xaml.cs">
       <DependentUpon>AirplaneManagementControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AirplaneUsersControl.xaml.cs">
+    <Compile Include="Services\AirplaneService.cs" />
+    <Compile Include="Views\Controls\AirplaneUsersControl.xaml.cs">
       <DependentUpon>AirplaneUsersControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Airport.cs" />
-    <Compile Include="DashboardControl.xaml.cs">
+    <Compile Include="Models\Airport.cs" />
+    <Compile Include="Views\Controls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="Flight.cs" />
-    <Compile Include="HistoryFlightsUserControl.xaml.cs">
+    <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Models\Flight.cs" />
+    <Compile Include="Models\FlightFormData.cs" />
+    <Compile Include="Services\FlightService.cs" />
+    <Compile Include="Views\Controls\HistoryFlightsUserControl.xaml.cs">
       <DependentUpon>HistoryFlightsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationControl.xaml.cs">
+    <Compile Include="Views\Controls\RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginControl.xaml.cs">
+    <Compile Include="Views\Controls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="AirplaneManagementControl.xaml">
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Page Include="Views\Controls\AirplaneManagementControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AirplaneUsersControl.xaml">
+    <Page Include="Views\Controls\AirplaneUsersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardControl.xaml">
+    <Page Include="Views\Controls\DashboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HistoryFlightsUserControl.xaml">
+    <Page Include="Views\Controls\HistoryFlightsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -201,15 +206,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegistrationControl.xaml">
+    <Page Include="Views\Controls\RegistrationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginControl.xaml">
+    <Page Include="Views\Controls\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,7 +237,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Lady Marmalade.ttf" />
+    <Resource Include="Resources\Fonts\Lady Marmalade.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -255,10 +260,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Plane.png" />
+    <Resource Include="Resources\Images\Plane.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Airport.png" />
+    <Resource Include="Resources\Images\Airport.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

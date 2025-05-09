@@ -14,8 +14,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Airalnes.Views;
+using Airalnes.Views.Controls;
+using Airalnes.Models;
+using Airalnes.Helpers;
 
-namespace Airalnes
+namespace Airalnes.Views.Controls
 {
     /// <summary>
     /// Логика взаимодействия для AirplaneUsersControl.xaml

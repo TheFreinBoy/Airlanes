@@ -16,15 +16,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static MaterialDesignThemes.Wpf.Theme;
+using Airalnes.Views;
+using Airalnes.Views.Controls;
+using Airalnes.Models;
+using Airalnes.Services;
 
-namespace Airalnes
+namespace Airalnes.Views.Controls
 {
     /// <summary>
     /// Логика взаимодействия для AirplaneManagementControl.xaml
     /// </summary>
     public partial class AirplaneManagementControl : UserControl
     {
-        private DatabaseHelper dbHelper = new DatabaseHelper();
+        private readonly AirplaneService airplaneService = new AirplaneService();
         public AirplaneManagementControl()
         {
             InitializeComponent();
@@ -71,14 +75,15 @@ namespace Airalnes
             }
 
         }
-        
+
         private void LoadAirplanes()
         {
-            AirplaneComboBox.ItemsSource = dbHelper.GetAirplanes();
+            AirplaneComboBox.ItemsSource = airplaneService.GetAllAirplanes();
         }
+
         private void LoadAirports()
         {
-            var airports = dbHelper.GetAirports();
+            var airports = airplaneService.GetAllAirports();
             FromTextBox.ItemsSource = airports;
             ToTextBox.ItemsSource = airports;
         }
@@ -100,7 +105,10 @@ namespace Airalnes
             }
         }
         private void CreateButton_Click(object sender, RoutedEventArgs e)
-        {           
+        {
+            var fromAirport = FromTextBox.SelectedItem as Airport;
+            var toAirport = ToTextBox.SelectedItem as Airport;
+            var selectedAirplane = AirplaneComboBox.SelectedItem as Airplane;
             FromTextBox.BorderBrush = string.IsNullOrEmpty(FromTextBox.Text) ? Brushes.Red : Brushes.Black;
             ToTextBox.BorderBrush = string.IsNullOrEmpty(ToTextBox.Text) ? Brushes.Red : Brushes.Black;           
             DepartureTextBox.BorderBrush = string.IsNullOrEmpty(DepartureTextBox.Text) ? Brushes.Red : Brushes.Black;
@@ -119,35 +127,28 @@ namespace Airalnes
             }
             GlobalError.Visibility = Visibility.Collapsed;
 
-            if (FromTextBox.SelectedItem is Airport fromAirport &&
-                ToTextBox.SelectedItem is Airport toAirport &&
-                AirplaneComboBox.SelectedItem is Airplane selectedAirplane)
+            var formData = new FlightFormData
             {
-                try
-                {
-                    dbHelper.CreateFlight(
-                        from: fromAirport.IATACode,
-                        to: toAirport.IATACode,
-                        departure: DepartureTextBox.Text,
-                        returnDate: ArrivalTextBox.Text,
-                        flightClass: ClassComboBox.Text,
-                        airplaneId: selectedAirplane.Id,
-                        flightNumber: FlightNumberTextBox.Text,
-                        capacity: selectedAirplane.Capacity,
-                        timeDP: DepartureTimePicker.Text,
-                        timeAR: ArrivalTimePicker.Text
-                    );
+                From = fromAirport.IATACode,
+                To = toAirport.IATACode,
+                DepartureDate = DepartureTextBox.Text,
+                ArrivalDate = ArrivalTextBox.Text,
+                FlightClass = ClassComboBox.Text,
+                AirplaneId = selectedAirplane.Id,
+                Capacity = selectedAirplane.Capacity,
+                FlightNumber = FlightNumberTextBox.Text,
+                DepartureTime = DepartureTimePicker.Text,
+                ArrivalTime = ArrivalTimePicker.Text
+            };
 
-                    Console.WriteLine("Рейс успішно створено!");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Помилка: {ex.Message}");
-                }
-            }
-            else
+            var service = new FlightService();
+            try
             {
-               
+                service.CreateFlight(formData);
+            }
+            catch
+            {
+                GlobalError.Visibility = Visibility.Visible;
             }
         }
     }

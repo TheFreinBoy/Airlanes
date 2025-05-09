@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airalnes
+namespace Airalnes.Models
 {
     public class Airport
     {

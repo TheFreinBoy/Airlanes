@@ -12,8 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Airalnes.Views;
+using Airalnes.Views.Controls;
 
-namespace Airalnes
+namespace Airalnes.Views.Controls
 {
     /// <summary>
     /// Логика взаимодействия для DashboardControl.xaml

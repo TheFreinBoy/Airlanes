@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Airalnes.Views.Controls;
 
-namespace Airalnes
+namespace Airalnes.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml

@@ -7,8 +7,9 @@ using System.Data.SQLite;
 using System.IO;
 using Airalnes;
 using System.Windows.Media.Media3D;
+using Airalnes.Models;
 
-namespace Airalnes
+namespace Airalnes.Helpers
 {
     public class DatabaseHelper
     {
