@@ -91,7 +91,7 @@
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
                         </Button>
                     </StackPanel>
-                    <Image Source="/Images/Airport.png" Width="500" Height="300" Margin="30" VerticalAlignment="Center" Stretch="Fill"/>
+                    <Image Source="pack://application:,,,/Resources/Images/Airport.png" Width="500" Height="300" Margin="30" VerticalAlignment="Center" Stretch="Fill"/>
                 </Grid>
                 
 

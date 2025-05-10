@@ -95,7 +95,7 @@
                             <Setter Property="FontSize" Value="16"/>
                         </Style>
                     </Grid.Resources>
-                    <TextBlock Text="Worker" FontSize="38"   Margin="0 0 0 340" Foreground="White" FontFamily="pack://application:,,,/Fonts/#Lady Marmalade"
+                    <TextBlock Text="Worker" FontSize="38"   Margin="0 0 0 340" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
                                HorizontalAlignment="Center" VerticalAlignment="Center" >
                     </TextBlock>
                     <StackPanel Margin="650 0 0 0">

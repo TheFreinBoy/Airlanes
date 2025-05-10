@@ -32,5 +32,9 @@ namespace Airalnes.Services
                 timeAR: data.ArrivalTime
             );
         }
+        public List<Flight> SearchFlights(string from, string to, string departure, string arrival, string flightClass, int passengers)
+        {
+            return _dbHelper.SearchFlights(from, to, departure, arrival, flightClass, passengers);
+        }
     }
 }

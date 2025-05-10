@@ -18,6 +18,7 @@ using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Models;
 using Airalnes.Helpers;
+using Airalnes.Services;
 
 namespace Airalnes.Views.Controls
 {
@@ -26,7 +27,8 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class AirplaneUsersControl : UserControl
     {
-        private DatabaseHelper dbHelper = new DatabaseHelper();
+        private readonly AirplaneService airplaneService = new AirplaneService();
+        private readonly FlightService flightService = new FlightService();
         public AirplaneUsersControl()
         {
             InitializeComponent();
@@ -72,7 +74,7 @@ namespace Airalnes.Views.Controls
         }
         private void LoadAirports()
         {
-            var airports = dbHelper.GetAirports();
+            var airports = airplaneService.GetAllAirports();
             FromTextBox.ItemsSource = airports;
             ToTextBox.ItemsSource = airports;
         }
@@ -99,15 +101,10 @@ namespace Airalnes.Views.Controls
                 string arrival = ArrivalTextBox.SelectedDate?.ToString("yyyy-MM-dd") ?? "";
                 string flightClass = (ClassComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
 
-                int passengers = 1;
+            int passengers = int.Parse(PassengersComboBox.Text);
 
-            if (PassengersComboBox.SelectedItem is ComboBoxItem selectedItem && int.TryParse(selectedItem.Content.ToString(), out int parsed))
-            {
-                passengers = parsed;
-            }
-
-            var results = dbHelper.SearchFlights(from, to, departure, arrival, flightClass, passengers);
-                FlightsDataGrid.ItemsSource = results;
+            var results = flightService.SearchFlights(from, to, departure, arrival, flightClass, passengers);
+            FlightsDataGrid.ItemsSource = results;
             
         }
         private void BookFlight_Click(object sender, RoutedEventArgs e)

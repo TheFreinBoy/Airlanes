@@ -312,9 +312,6 @@ namespace Airalnes.Helpers
             return isoDateStr;
         }
 
-
-
-
         public SQLiteConnection GetConnection()
         {
             return new SQLiteConnection(_connectionString);

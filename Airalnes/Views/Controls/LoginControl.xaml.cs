@@ -46,11 +46,11 @@ namespace Airalnes.Views.Controls
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 BlankError.Visibility = Visibility.Visible;
+                InvalidError.Visibility = Visibility.Collapsed;
                 return;
             }
 
-            BlankError.Visibility = Visibility.Collapsed;
-
+            BlankError.Visibility = Visibility.Collapsed;          
             string role = _userService.AuthenticateUser(username, password);
 
             if (role != null)
@@ -62,6 +62,7 @@ namespace Airalnes.Views.Controls
             }
             else
             {
+                BlankError.Visibility = Visibility.Collapsed;
                 InvalidError.Visibility = Visibility.Visible;
             }
         }
